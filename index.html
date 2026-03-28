@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アロハハウス・アロハデイサービス</title>
+<meta name="description" content="アロハハウスは、サービス付き高齢者向け住宅としてご入居者さま一人ひとりが安心して暮らせる住まいを提供しています。">
+<meta property="og:title" content="アロハハウス・アロハデイサービス">
+<meta property="og:description" content="見守りとやさしさに包まれる安心の場所。サービス付き高齢者向け住宅。">
+<meta property="og:image" content="images/group.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --orange: #E8822A;
+  --orange-light: #F09A4A;
+  --beige: #F9F0E8;
+  --dark: #333;
+  --gray: #666;
+  --white: #fff;
+  --radius: 12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Zen Maru Gothic', 'Hiragino Sans', 'Meiryo', sans-serif;
+  color: var(--dark);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--orange); text-decoration: none; }
+
+/* ========== HEADER ========== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+}
+
+.nav-toggle { display: none; }
+
+.hamburger {
+  width: 28px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.nav-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.nav-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle:checked ~ .hamburger span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 260px;
+  height: 100vh;
+  background: var(--white);
+  box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+  padding: 80px 32px 32px;
+  transition: right 0.3s ease;
+  z-index: 150;
+  list-style: none;
+}
+
+.nav-toggle:checked ~ .nav-menu { right: 0; }
+
+.nav-menu li { margin-bottom: 20px; }
+
+.nav-menu a {
+  color: var(--dark);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-menu a:hover { color: var(--orange); }
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 140;
+}
+
+.nav-toggle:checked ~ .nav-overlay { display: block; }
+
+/* ========== HERO ========== */
+.hero {
+  text-align: center;
+  padding: 40px 20px 0;
+  background: linear-gradient(180deg, var(--white) 0%, var(--beige) 60%, var(--white) 100%);
+  position: relative;
+}
+
+.hero-circles {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.hero-circles img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.hero-badge {
+  display: inline-block;
+  border: 2px solid var(--orange);
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 20px;
+  border-radius: 30px;
+  margin-bottom: 12px;
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 6px;
+}
+
+.hero h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+/* ========== BUILDING ========== */
+.building {
+  padding: 16px 20px 48px;
+  text-align: center;
+}
+
+.building-img {
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: -28px;
+  position: relative;
+  z-index: 10;
+}
+
+.badge-item {
+  background: var(--orange);
+  color: var(--white);
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(232,130,42,0.3);
+}
+
+/* ========== SECTIONS COMMON ========== */
+.section { padding: 56px 20px; }
+
+.section-label {
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.section-text {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--gray);
+  margin-bottom: 16px;
+}
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--orange);
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.section-link:hover { text-decoration: underline; }
+
+/* ========== ABOUT ========== */
+.about { background: var(--beige); }
+
+.about-photo {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-top: 24px;
+}
+
+/* ========== SERVICE ========== */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.service-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.service-card-body { padding: 20px; }
+
+.service-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.service-card-text {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* ========== FACILITY ========== */
+.facility-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.facility-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.facility-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.facility-item-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 20px 8px 8px;
+}
+
+/* ========== NEWS ========== */
+.news { background: #f8f8f8; }
+
+.news-list { margin-top: 24px; }
+
+.news-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.news-item:last-child { border-bottom: none; }
+
+.news-date {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.news-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.news-excerpt {
+  font-size: 14px;
+  color: var(--gray);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========== BUTTONS ========== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 24px;
+}
+
+.btn-primary:hover { background: var(--orange-light); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  color: var(--orange);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 40px;
+  border: 2px solid var(--orange);
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 24px;
+}
+
+.btn-outline:hover {
+  background: var(--orange);
+  color: var(--white);
+}
+
+.fee-photo {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--orange);
+  color: var(--white);
+  padding: 48px 20px 24px;
+}
+
+.footer-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.footer-info {
+  font-size: 14px;
+  line-height: 2;
+  margin-bottom: 24px;
+}
+
+.footer-info dt {
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+.footer-info dd { margin-left: 0; }
+
+.footer-nav {
+  list-style: none;
+  margin-bottom: 32px;
+}
+
+.footer-nav li { margin-bottom: 12px; }
+
+.footer-nav a {
+  color: var(--white);
+  font-size: 14px;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.footer-nav a:hover { opacity: 1; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.3);
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.footer-bottom a { color: var(--white); opacity: 0.8; }
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 16px;
+}
+
+/* ========== CTA FLOAT ========== */
+.cta-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 90;
+  background: #06C755;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 24px;
+  border-radius: 40px;
+  box-shadow: 0 4px 16px rgba(6,199,85,0.4);
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.cta-float:hover { transform: scale(1.05); }
+
+/* ========== TABLET+ ========== */
+@media (min-width: 768px) {
+  .section { padding: 80px 40px; }
+  .hero h1 { font-size: 32px; }
+  .hero-circles img { width: 80px; height: 80px; }
+  .section-title { font-size: 28px; }
+  .service-grid { grid-template-columns: 1fr 1fr; }
+  .facility-grid { grid-template-columns: repeat(3, 1fr); }
+  .facility-item img { height: 180px; }
+  .badges { gap: 24px; }
+  .badge-item { width: 120px; height: 120px; font-size: 13px; }
+  .footer-inner { display: flex; gap: 48px; }
+  .footer-left { flex: 1; }
+  .footer-right { flex: 0 0 200px; }
+}
+
+/* ========== DESKTOP ========== */
+@media (min-width: 1024px) {
+  .section { padding: 100px 80px; max-width: 1200px; margin: 0 auto; }
+  .hero { padding: 60px 40px 0; }
+  .hero h1 { font-size: 38px; }
+  .hero-circles img { width: 96px; height: 96px; }
+  .header { padding: 16px 40px; }
+  .header-logo { font-size: 18px; }
+  .building { max-width: 800px; margin: 0 auto; padding-bottom: 64px; }
+  .facility-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">アロハハウス・アロハデイサービス</div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-menu">
+    <li><a href="#hero" onclick="document.getElementById('nav-toggle').checked=false">HOME</a></li>
+    <li><a href="#about" onclick="document.getElementById('nav-toggle').checked=false">施設について</a></li>
+    <li><a href="#service" onclick="document.getElementById('nav-toggle').checked=false">提供するサービス</a></li>
+    <li><a href="#facility" onclick="document.getElementById('nav-toggle').checked=false">施設紹介</a></li>
+    <li><a href="#fee" onclick="document.getElementById('nav-toggle').checked=false">料金表</a></li>
+    <li><a href="#news" onclick="document.getElementById('nav-toggle').checked=false">お知らせ</a></li>
+    <li><a href="#footer" onclick="document.getElementById('nav-toggle').checked=false">お問い合わせ</a></li>
+  </ul>
+  <label for="nav-toggle" class="nav-overlay"></label>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-circles">
+    <img src="images/circle-staff.png" alt="スタッフ">
+    <img src="images/service-food.png" alt="食事">
+    <img src="images/garden.png" alt="ガーデニング">
+    <img src="images/happy-group.png" alt="笑顔">
+    <img src="images/karaoke.png" alt="カラオケ">
+    <img src="images/circle-golf.png" alt="パターゴルフ">
+  </div>
+  <div class="hero-badge">アロハハウス・アロハデイサービス</div>
+  <p class="hero-sub">あなたらしく生きるを大切に</p>
+  <h1>見守りとやさしさに<br>包まれる 安心の場所</h1>
+</section>
+
+<!-- BUILDING -->
+<section class="building">
+  <img src="images/building.jpg" alt="アロハハウス外観" class="building-img">
+  <div class="badges">
+    <div class="badge-item">在宅介護のプロが<br>しっかり連携</div>
+    <div class="badge-item">最新のICT導入で<br>安心できる！</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <p class="section-label">About Us</p>
+  <h2 class="section-title">地域で安心して暮らし続けられる住まい</h2>
+  <p class="section-text">
+    アロハハウスは、サービス付き高齢者向け住宅としてご入居者さま一人ひとりが安心して暮らせる住まいを提供しています。
+  </p>
+  <p class="section-text">
+    全室個室のお部屋には、トイレ・お風呂・ミニキッチン・洗濯機置き場を備え、段差のないバリアフリー設計で、安心して日常生活をお送りいただけます。
+  </p>
+  <p class="section-text">
+    また、ナースコールや安否確認などの生活支援サービスに加え、施設スタッフへ24時間相談できる体制を整えています。
+  </p>
+  <p class="section-text">
+    併設の訪問介護・訪問看護サービスをご利用いただくことで、日常生活のサポートや健康管理など、必要な支援を受けながら自分らしい生活を続けることができます。
+  </p>
+  <p class="section-text">
+    さらに、併設のデイサービスや、カラオケルーム・プライベートサウナなどの設備を通じて、楽しみや交流のある、いきいきとした毎日をサポートします。
+  </p>
+  <p class="section-text">
+    私たちは「介護する側も介護される側も幸せに」という理念のもと、安心と笑顔にあふれる暮らしを地域の中で支えてまいります。
+  </p>
+  <a href="#about" class="section-link">施設について &rarr;</a>
+  <img src="images/about.png" alt="施設の風景" class="about-photo">
+</section>
+
+<!-- SERVICE -->
+<section class="section" id="service">
+  <p class="section-label">Service</p>
+  <h2 class="section-title">提供するサービス</h2>
+  <p class="section-text">
+    アロハハウスでは、訪問介護・訪問看護・居宅介護支援事業所が連携し、入居者さまの生活をサポートします。
+  </p>
+  <p class="section-text">
+    10年以上地域で介護サービスをおこなってきた経験豊富なスタッフが対応します。医療や介護が必要になった場合も、慣れたスタッフが継続して支援できるので安心です。
+  </p>
+  <p class="section-text">
+    日常生活から健康管理まで、専門職がチームで支える体制を整えています。
+  </p>
+  <div class="service-grid">
+    <div class="service-card">
+      <img src="images/service-care.png" alt="介護サービス">
+      <div class="service-card-body">
+        <h3 class="service-card-title">生活支援・介護</h3>
+        <p class="service-card-text">経験豊富なスタッフが居室での生活をサポート。健康管理や日常の介護まで、安心してお過ごしいただけます。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/service-food.png" alt="食事サービス">
+      <div class="service-card-body">
+        <h3 class="service-card-title">食事サービス</h3>
+        <p class="service-card-text">栄養バランスの取れた手作りの食事を提供。お食事サービスはご希望に応じて追加でご利用いただけます。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/ict-medicine.png" alt="ICT導入">
+      <div class="service-card-body">
+        <h3 class="service-card-title">最新ICTの活用</h3>
+        <p class="service-card-text">タブレットによる服薬管理や顔認証システムなど、最新のICTを導入し、安心・安全な暮らしを支えます。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/happy-group.png" alt="地域連携">
+      <div class="service-card-body">
+        <h3 class="service-card-title">地域連携</h3>
+        <p class="service-card-text">地域の医療・福祉事業所と連携し、必要なサービスを受けられる体制を整えています。訪問歯科、訪問診療、訪問マッサージ、訪問美容師、訪問薬局など。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITY -->
+<section class="section" id="facility" style="background: var(--beige);">
+  <p class="section-label">Our Facilities</p>
+  <h2 class="section-title">施設紹介</h2>
+  <div class="facility-grid">
+    <div class="facility-item">
+      <img src="images/room.png" alt="居室">
+      <span class="facility-item-label">居室</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/bath.png" alt="檜風呂">
+      <span class="facility-item-label">檜風呂</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/karaoke.png" alt="カラオケルーム">
+      <span class="facility-item-label">カラオケルーム</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/golf.png" alt="パターゴルフ">
+      <span class="facility-item-label">パターゴルフ</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/exercise.png" alt="体操">
+      <span class="facility-item-label">体操・レクリエーション</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/movie.png" alt="シアタールーム">
+      <span class="facility-item-label">シアタールーム</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/garden.png" alt="ガーデニング">
+      <span class="facility-item-label">ガーデニング</span>
+    </div>
+    <div class="facility-item">
+      <img src="images/entrance.png" alt="エントランス">
+      <span class="facility-item-label">エントランス</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEE -->
+<section class="section" id="fee">
+  <img src="images/group.png" alt="アロハハウスの皆さん" class="fee-photo">
+  <p class="section-label">Fee</p>
+  <h2 class="section-title">ご利用料金のご案内</h2>
+  <p class="section-text">
+    アロハハウスでは、家賃・共益費・生活支援サービス費などを基本料金として設定しています。
+  </p>
+  <p class="section-text">
+    ご利用される介護サービスやお食事サービスなどは、ご希望に応じて追加でご利用いただけます。
+  </p>
+  <p class="section-text">
+    お客さまの生活スタイルに合わせて、必要なサービスを選んでご利用いただけます。
+  </p>
+  <p class="section-text">
+    ご不明な点がございましたら、スタッフまでお気軽にお問い合わせください。
+  </p>
+  <a href="#" class="btn-primary">ご利用料金はこちら &nearr;</a>
+</section>
+
+<!-- NEWS -->
+<section class="section news" id="news">
+  <p class="section-label">News &amp; Blog</p>
+  <h2 class="section-title">お知らせ＆スタッフブログ</h2>
+  <div class="news-list">
+    <div class="news-item">
+      <p class="news-date">2026/02/22</p>
+      <p class="news-title">【嬉しいご報告】外部ワーカーさんから高評価をいただきました</p>
+      <p class="news-excerpt">日より、ヘルパーステーションでスポットパートナーを通じて募集を開始しました。なん…</p>
+    </div>
+    <div class="news-item">
+      <p class="news-date">2026/02/01</p>
+      <p class="news-title">アロハハウスとアロハデイサービスの求人動画が完成しました</p>
+      <p class="news-excerpt">アロハハウスの求人動画がやっと完成しました！介護する…</p>
+    </div>
+  </div>
+  <a href="#" class="btn-outline">お知らせ一覧へ</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <p class="footer-name">アロハハウス・アロハデイサービス</p>
+      <dl class="footer-info">
+        <dd>〒194-0022</dd>
+        <dd>東京都町田市森野4-17-17</dd>
+        <dd>TEL 042-732-3657</dd>
+        <dd>FAX 042-732-3659</dd>
+        <dt>営業時間</dt>
+        <dd>8:00〜17:00</dd>
+        <dd>サービス提供時間 9:15〜16:25</dd>
+        <dt>営業日</dt>
+        <dd>日曜及び年末年始を除く</dd>
+        <dd>※祝祭日も営業しております。</dd>
+      </dl>
+    </div>
+    <div class="footer-right">
+      <ul class="footer-nav">
+        <li><a href="#hero">HOME</a></li>
+        <li><a href="#about">施設について</a></li>
+        <li><a href="#service">提供するサービス</a></li>
+        <li><a href="#facility">施設紹介</a></li>
+        <li><a href="#fee">料金表</a></li>
+        <li><a href="#news">お知らせ</a></li>
+        <li><a href="#">採用情報</a></li>
+        <li><a href="#footer">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="#">運営会社</a>
+    <a href="#">プライバシーポリシー</a>
+    <p class="copyright">Copyright &copy; hidamari day service All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- LINE CTA -->
+<a href="https://lin.ee/XXXXX" class="cta-float">LINE予約 &rarr;</a>
+
+</body>
+</html>
