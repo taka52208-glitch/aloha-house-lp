@@ -130,18 +130,21 @@ a { color: var(--orange); text-decoration: none; }
 .hero-circles {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-circles img {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--white);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 3px solid var(--white);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .hero-badge {
@@ -321,28 +324,136 @@ a { color: var(--orange); text-decoration: none; }
   padding: 20px 8px 8px;
 }
 
-/* ========== NEWS ========== */
-.news { background: #f8f8f8; }
+/* ========== SCHEDULE (1日の流れ) ========== */
+.schedule { background: var(--beige); }
 
-.news-list { margin-top: 24px; }
+.schedule-timeline {
+  margin-top: 24px;
+  position: relative;
+  padding-left: 24px;
+}
 
-.news-item {
-  padding: 20px 0;
+.schedule-timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: var(--orange-light);
+  border-radius: 2px;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.schedule-item::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--orange);
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--orange-light);
+}
+
+.schedule-time {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--orange);
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.schedule-content {
+  font-size: 15px;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.schedule-content strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.schedule-content span {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+/* ========== FEE TABLE ========== */
+.fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.fee-table th,
+.fee-table td {
+  padding: 12px 16px;
+  text-align: left;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.news-item:last-child { border-bottom: none; }
+.fee-table th {
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+}
 
-.news-date {
+.fee-table tr:nth-child(even) { background: #faf6f2; }
+
+.fee-table td:last-child {
+  text-align: right;
+  font-weight: 500;
+}
+
+.fee-note {
   font-size: 13px;
   color: var(--gray);
-  margin-bottom: 4px;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+/* ========== NEWS ========== */
+.news { background: #f8f8f8; }
+
+.news-list {
+  margin-top: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.news-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.news-date {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--white);
+  background: var(--orange);
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
 }
 
 .news-title {
   font-size: 15px;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .news-excerpt {
@@ -484,13 +595,17 @@ a { color: var(--orange); text-decoration: none; }
 @media (min-width: 768px) {
   .section { padding: 80px 40px; }
   .hero h1 { font-size: 32px; }
-  .hero-circles img { width: 80px; height: 80px; }
+  .hero-circles img { width: 96px; height: 96px; }
+  .hero-circles { gap: 20px; max-width: 640px; }
   .section-title { font-size: 28px; }
   .service-grid { grid-template-columns: 1fr 1fr; }
   .facility-grid { grid-template-columns: repeat(3, 1fr); }
   .facility-item img { height: 180px; }
   .badges { gap: 24px; }
   .badge-item { width: 120px; height: 120px; font-size: 13px; }
+  .schedule-timeline { padding-left: 32px; max-width: 600px; }
+  .fee-table { max-width: 600px; }
+  .news-list { grid-template-columns: 1fr 1fr; }
   .footer-inner { display: flex; gap: 48px; }
   .footer-left { flex: 1; }
   .footer-right { flex: 0 0 200px; }
@@ -501,11 +616,14 @@ a { color: var(--orange); text-decoration: none; }
   .section { padding: 100px 80px; max-width: 1200px; margin: 0 auto; }
   .hero { padding: 60px 40px 0; }
   .hero h1 { font-size: 38px; }
-  .hero-circles img { width: 96px; height: 96px; }
+  .hero-circles img { width: 110px; height: 110px; }
+  .hero-circles { gap: 24px; max-width: 780px; }
   .header { padding: 16px 40px; }
   .header-logo { font-size: 18px; }
   .building { max-width: 800px; margin: 0 auto; padding-bottom: 64px; }
   .facility-grid { grid-template-columns: repeat(4, 1fr); }
+  .schedule-timeline { max-width: 700px; }
+  .fee-table { max-width: 700px; }
 }
 </style>
 </head>
@@ -522,6 +640,7 @@ a { color: var(--orange); text-decoration: none; }
     <li><a href="#hero" onclick="document.getElementById('nav-toggle').checked=false">HOME</a></li>
     <li><a href="#about" onclick="document.getElementById('nav-toggle').checked=false">施設について</a></li>
     <li><a href="#service" onclick="document.getElementById('nav-toggle').checked=false">提供するサービス</a></li>
+    <li><a href="#schedule" onclick="document.getElementById('nav-toggle').checked=false">1日の流れ</a></li>
     <li><a href="#facility" onclick="document.getElementById('nav-toggle').checked=false">施設紹介</a></li>
     <li><a href="#fee" onclick="document.getElementById('nav-toggle').checked=false">料金表</a></li>
     <li><a href="#news" onclick="document.getElementById('nav-toggle').checked=false">お知らせ</a></li>
@@ -625,6 +744,47 @@ a { color: var(--orange); text-decoration: none; }
   </div>
 </section>
 
+<!-- SCHEDULE -->
+<section class="section schedule" id="schedule">
+  <p class="section-label">Daily Schedule</p>
+  <h2 class="section-title">1日の流れ</h2>
+  <p class="section-text">アロハデイサービスでの1日の過ごし方をご紹介します。</p>
+  <div class="schedule-timeline">
+    <div class="schedule-item">
+      <div class="schedule-time">9:15</div>
+      <div class="schedule-content"><strong>お迎え・到着</strong><span>送迎車でお迎え。到着後、健康チェック（体温・血圧測定）</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">9:45</div>
+      <div class="schedule-content"><strong>朝の会・体操</strong><span>みなさんで体を動かしてリフレッシュ</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">10:30</div>
+      <div class="schedule-content"><strong>入浴・個別活動</strong><span>入浴サービスや個別のリハビリ・趣味活動</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">12:00</div>
+      <div class="schedule-content"><strong>昼食</strong><span>栄養バランスの取れた手作りのお食事</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">13:00</div>
+      <div class="schedule-content"><strong>レクリエーション</strong><span>カラオケ・ゲーム・創作活動などお楽しみの時間</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">14:30</div>
+      <div class="schedule-content"><strong>おやつ・ティータイム</strong><span>おやつを食べながらゆったりとした時間</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">15:30</div>
+      <div class="schedule-content"><strong>帰りの会</strong><span>1日の振り返り、お見送りの準備</span></div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-time">16:25</div>
+      <div class="schedule-content"><strong>送迎・お見送り</strong><span>送迎車でご自宅までお送りします</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- FACILITY -->
 <section class="section" id="facility" style="background: var(--beige);">
   <p class="section-label">Our Facilities</p>
@@ -671,18 +831,17 @@ a { color: var(--orange); text-decoration: none; }
   <p class="section-label">Fee</p>
   <h2 class="section-title">ご利用料金のご案内</h2>
   <p class="section-text">
-    アロハハウスでは、家賃・共益費・生活支援サービス費などを基本料金として設定しています。
+    アロハハウスでは、家賃・共益費・生活支援サービス費などを基本料金として設定しています。お客さまの生活スタイルに合わせて、必要なサービスを選んでご利用いただけます。
   </p>
-  <p class="section-text">
-    ご利用される介護サービスやお食事サービスなどは、ご希望に応じて追加でご利用いただけます。
-  </p>
-  <p class="section-text">
-    お客さまの生活スタイルに合わせて、必要なサービスを選んでご利用いただけます。
-  </p>
-  <p class="section-text">
-    ご不明な点がございましたら、スタッフまでお気軽にお問い合わせください。
-  </p>
-  <a href="#" class="btn-primary">ご利用料金はこちら &nearr;</a>
+  <table class="fee-table">
+    <tr><th>項目</th><th>月額（税込）</th></tr>
+    <tr><td>家賃</td><td>55,000円〜</td></tr>
+    <tr><td>共益費</td><td>15,000円</td></tr>
+    <tr><td>生活支援サービス費</td><td>30,000円</td></tr>
+    <tr><td>食事サービス（希望制）</td><td>実費</td></tr>
+  </table>
+  <p class="fee-note">※ 介護保険サービスのご利用料金は、介護度やサービス内容により異なります。<br>※ 詳しい料金についてはお気軽にお問い合わせください。</p>
+  <a href="#footer" class="btn-primary">料金について相談する &rarr;</a>
 </section>
 
 <!-- NEWS -->
@@ -727,6 +886,7 @@ a { color: var(--orange); text-decoration: none; }
         <li><a href="#hero">HOME</a></li>
         <li><a href="#about">施設について</a></li>
         <li><a href="#service">提供するサービス</a></li>
+        <li><a href="#schedule">1日の流れ</a></li>
         <li><a href="#facility">施設紹介</a></li>
         <li><a href="#fee">料金表</a></li>
         <li><a href="#news">お知らせ</a></li>
