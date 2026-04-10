@@ -172,6 +172,95 @@ a { color: var(--orange); text-decoration: none; }
   margin-bottom: 24px;
 }
 
+.hero-open {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 10px 28px;
+  border-radius: 40px;
+  margin-top: 4px;
+  box-shadow: 0 4px 12px rgba(232,130,42,0.3);
+}
+
+/* ========== ABOUT MENU ========== */
+.about-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+
+.about-menu-item {
+  background: var(--white);
+  border: 2px solid var(--orange);
+  color: var(--orange);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: var(--radius);
+  transition: 0.2s;
+  text-decoration: none;
+}
+
+.about-menu-item:hover {
+  background: var(--orange);
+  color: var(--white);
+}
+
+/* ========== PLACEHOLDER SECTIONS ========== */
+.placeholder-note {
+  background: #fff7ee;
+  border-left: 4px solid var(--orange);
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--gray);
+  border-radius: 4px;
+  line-height: 1.8;
+}
+
+.office-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.office-card {
+  background: var(--white);
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.office-card h3 {
+  font-size: 16px;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.office-card dl {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.office-card dt {
+  display: inline-block;
+  min-width: 72px;
+  color: var(--gray);
+}
+
+.office-card dd {
+  display: inline;
+  margin: 0;
+}
+
+.office-card dd::after { content: '\A'; white-space: pre; }
+
 /* ========== BUILDING ========== */
 .building {
   padding: 16px 20px 48px;
@@ -609,6 +698,8 @@ a { color: var(--orange); text-decoration: none; }
   .footer-inner { display: flex; gap: 48px; }
   .footer-left { flex: 1; }
   .footer-right { flex: 0 0 200px; }
+  .about-menu { grid-template-columns: repeat(3, 1fr); max-width: 640px; }
+  .hero-open { font-size: 18px; padding: 12px 36px; }
 }
 
 /* ========== DESKTOP ========== */
@@ -644,6 +735,8 @@ a { color: var(--orange); text-decoration: none; }
     <li><a href="#facility" onclick="document.getElementById('nav-toggle').checked=false">施設紹介</a></li>
     <li><a href="#fee" onclick="document.getElementById('nav-toggle').checked=false">料金表</a></li>
     <li><a href="#news" onclick="document.getElementById('nav-toggle').checked=false">お知らせ</a></li>
+    <li><a href="#offices" onclick="document.getElementById('nav-toggle').checked=false">事業所詳細</a></li>
+    <li><a href="#recruit" onclick="document.getElementById('nav-toggle').checked=false">採用情報</a></li>
     <li><a href="#footer" onclick="document.getElementById('nav-toggle').checked=false">お問い合わせ</a></li>
   </ul>
   <label for="nav-toggle" class="nav-overlay"></label>
@@ -662,6 +755,7 @@ a { color: var(--orange); text-decoration: none; }
   <div class="hero-badge">アロハハウス・アロハデイサービス</div>
   <p class="hero-sub">あなたらしく生きるを大切に</p>
   <h1>見守りとやさしさに<br>包まれる 安心の場所</h1>
+  <p class="hero-open">2026年7月OPEN予定</p>
 </section>
 
 <!-- BUILDING -->
@@ -695,7 +789,15 @@ a { color: var(--orange); text-decoration: none; }
   <p class="section-text">
     私たちは「介護する側も介護される側も幸せに」という理念のもと、安心と笑顔にあふれる暮らしを地域の中で支えてまいります。
   </p>
-  <a href="#about" class="section-link">施設について &rarr;</a>
+  <nav class="about-menu" aria-label="施設についてメニュー">
+    <a href="#schedule" class="about-menu-item">1日の流れ</a>
+    <a href="#fee" class="about-menu-item">料金表</a>
+    <a href="#news" class="about-menu-item">お知らせ一覧</a>
+    <a href="#offices" class="about-menu-item">事業所詳細</a>
+    <a href="#recruit" class="about-menu-item">採用情報</a>
+    <a href="#privacy" class="about-menu-item">プライバシーポリシー</a>
+    <a href="#company" class="about-menu-item">運営会社</a>
+  </nav>
   <img src="images/about.png" alt="施設の風景" class="about-photo">
 </section>
 
@@ -841,7 +943,6 @@ a { color: var(--orange); text-decoration: none; }
     <tr><td>食事サービス（希望制）</td><td>実費</td></tr>
   </table>
   <p class="fee-note">※ 介護保険サービスのご利用料金は、介護度やサービス内容により異なります。<br>※ 詳しい料金についてはお気軽にお問い合わせください。</p>
-  <a href="#footer" class="btn-primary">料金について相談する &rarr;</a>
 </section>
 
 <!-- NEWS -->
@@ -860,7 +961,78 @@ a { color: var(--orange); text-decoration: none; }
       <p class="news-excerpt">アロハハウスの求人動画がやっと完成しました！介護する…</p>
     </div>
   </div>
-  <a href="#" class="btn-outline">お知らせ一覧へ</a>
+  <a href="https://aloha-cares.com/blog/" target="_blank" rel="noopener" class="btn-outline">スタッフブログはこちら &rarr;</a>
+</section>
+
+<!-- OFFICES -->
+<section class="section" id="offices" style="background: var(--beige);">
+  <p class="section-label">Offices</p>
+  <h2 class="section-title">事業所詳細</h2>
+  <p class="section-text">併設の訪問介護・訪問看護・居宅介護支援事業所が連携し、入居者さまの生活をトータルでサポートします。</p>
+  <div class="office-list">
+    <div class="office-card">
+      <h3>アロハハウス（サービス付き高齢者向け住宅）</h3>
+      <dl>
+        <dt>所在地</dt><dd>東京都町田市森野4-17-17</dd>
+        <dt>TEL</dt><dd>042-732-3657</dd>
+        <dt>開設</dt><dd>2026年7月OPEN予定</dd>
+      </dl>
+    </div>
+    <div class="office-card">
+      <h3>アロハデイサービス</h3>
+      <dl>
+        <dt>サービス</dt><dd>通所介護（デイサービス）</dd>
+        <dt>TEL</dt><dd>042-732-3657</dd>
+      </dl>
+    </div>
+    <div class="office-card">
+      <h3>訪問介護・訪問看護・居宅介護支援事業所</h3>
+      <dl>
+        <dt>運営</dt><dd>株式会社アロハケアーズ</dd>
+      </dl>
+    </div>
+  </div>
+  <p class="placeholder-note">※ 指定番号・管理者名・詳細な事業所情報は現在準備中です。確定次第更新します。</p>
+</section>
+
+<!-- RECRUIT -->
+<section class="section" id="recruit">
+  <p class="section-label">Recruit</p>
+  <h2 class="section-title">採用情報</h2>
+  <p class="section-text">
+    アロハハウス・アロハデイサービスでは、一緒に働く仲間を募集しています。「介護する側も介護される側も幸せに」という理念に共感いただける方、ぜひご応募ください。
+  </p>
+  <p class="section-text">
+    経験豊富なスタッフがチームでサポートする体制を整えていますので、未経験の方も安心してお仕事を始めていただけます。最新のICTを活用した負担の少ない働き方も魅力です。
+  </p>
+  <p class="placeholder-note">※ 募集職種・給与・勤務時間などの詳細は現在準備中です。お問い合わせフォームよりお気軽にご連絡ください。</p>
+</section>
+
+<!-- PRIVACY -->
+<section class="section" id="privacy" style="background: var(--beige);">
+  <p class="section-label">Privacy Policy</p>
+  <h2 class="section-title">プライバシーポリシー</h2>
+  <p class="section-text">
+    アロハハウス・アロハデイサービス（以下「当施設」）は、ご利用者さまおよびご家族さまの個人情報の保護について、その重要性を深く認識し、関係法令を遵守するとともに、以下の方針に基づき適切に取り扱います。
+  </p>
+  <p class="section-text">
+    当施設は、個人情報の取得にあたっては利用目的を明確にし、その範囲内で適正に取り扱います。取得した個人情報は、ご本人の同意なく第三者へ提供することはありません。
+  </p>
+  <p class="placeholder-note">※ 正式なプライバシーポリシー本文は現在準備中です。確定次第更新します。</p>
+</section>
+
+<!-- COMPANY -->
+<section class="section" id="company">
+  <p class="section-label">Company</p>
+  <h2 class="section-title">運営会社</h2>
+  <table class="fee-table">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>会社名</td><td>株式会社アロハケアーズ</td></tr>
+    <tr><td>所在地</td><td>東京都町田市森野4-17-17</td></tr>
+    <tr><td>TEL</td><td>042-732-3657</td></tr>
+    <tr><td>事業内容</td><td>訪問介護・訪問看護・居宅介護支援・通所介護・サービス付き高齢者向け住宅の運営</td></tr>
+  </table>
+  <p class="placeholder-note">※ 代表者名・設立年月日などの詳細は現在準備中です。確定次第更新します。</p>
 </section>
 
 <!-- FOOTER -->
@@ -890,14 +1062,15 @@ a { color: var(--orange); text-decoration: none; }
         <li><a href="#facility">施設紹介</a></li>
         <li><a href="#fee">料金表</a></li>
         <li><a href="#news">お知らせ</a></li>
-        <li><a href="#">採用情報</a></li>
+        <li><a href="#offices">事業所詳細</a></li>
+        <li><a href="#recruit">採用情報</a></li>
         <li><a href="#footer">お問い合わせ</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <a href="#">運営会社</a>
-    <a href="#">プライバシーポリシー</a>
+    <a href="#company">運営会社</a>
+    <a href="#privacy">プライバシーポリシー</a>
     <p class="copyright">Copyright &copy; hidamari day service All Rights Reserved.</p>
   </div>
 </footer>
