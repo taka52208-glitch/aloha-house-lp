@@ -128,7 +128,7 @@ a { color: var(--orange); text-decoration: none; }
 }
 
 .hero-circles {
-  display: flex;
+  display: none;
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
@@ -684,8 +684,8 @@ a { color: var(--orange); text-decoration: none; }
 @media (min-width: 768px) {
   .section { padding: 80px 40px; }
   .hero h1 { font-size: 32px; }
+  .hero-circles { display: flex; gap: 20px; max-width: 640px; }
   .hero-circles img { width: 96px; height: 96px; }
-  .hero-circles { gap: 20px; max-width: 640px; }
   .section-title { font-size: 28px; }
   .service-grid { grid-template-columns: 1fr 1fr; }
   .facility-grid { grid-template-columns: repeat(3, 1fr); }
